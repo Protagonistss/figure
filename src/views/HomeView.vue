@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import RelationGraph, {RGJsonData} from 'relation-graph/vue3'
+import RelationGraph from 'relation-graph/vue3'
+import type { RGJsonData } from 'relation-graph/vue3'
 const relationGraph$ = ref<RelationGraph>()
 const options = {
   defaultExpandHolderPosition: 'right',
@@ -29,7 +30,7 @@ onMounted(() => {
       { from: 'N9', to: 'N4', text: '分享x' }
     ],
   };
-  relationGraph$.value.setJsonData(graphJsonData, () => {
+  relationGraph$.value && relationGraph$.value.setJsonData(graphJsonData, () => {
     console.log('relationGraph ready!');
   })
 })
@@ -39,8 +40,8 @@ onMounted(() => {
 <template>
   <main style="border: #efefef solid 1px; height: calc(100vh - 100px);width: 100%;">
     <relation-graph ref="relationGraph$" :options="options">
-      <template #node="{node}">
-        <div style="padding-top:20px;">节点：{{node.text}}</div>
+      <template #node="{ node }">
+        <div style="padding-top:20px;">节点：{{ node['text'] }}</div>
       </template>
     </relation-graph>
   </main>
