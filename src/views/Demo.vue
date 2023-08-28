@@ -29,7 +29,7 @@ onMounted(() => {
       { from: 'N3', to: 'N7', text: '分享777' },
       { from: 'N9', to: 'N4', text: '分享x' }
     ],
-  };
+  }
   relationGraph$.value && relationGraph$.value.setJsonData(graphJsonData, () => {
     console.log('relationGraph ready!');
   })

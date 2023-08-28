@@ -18,6 +18,11 @@ const router = createRouter({
           path: 'bothway-tree',
           name: 'bothway-tree',
           component: () => import('@/views/BothwayTree.vue')
+        },
+        {
+          path: 'relation-graph',
+          name: 'relation-graph',
+          component: () => import('@/views/RelationGraph.vue')
         }
       ]
     }
