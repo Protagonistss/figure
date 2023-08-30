@@ -23,6 +23,11 @@ const router = createRouter({
           path: 'relation-graph',
           name: 'relation-graph',
           component: () => import('@/views/RelationGraph.vue')
+        },
+        {
+          path: 'tag-view',
+          name: 'tag-view',
+          component: () => import('@/views/TagsView.vue')
         }
       ]
     }
