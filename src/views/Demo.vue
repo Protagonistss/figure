@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, h } from 'vue'
 import RelationGraph from 'relation-graph/vue3'
-import type { RGJsonData } from 'relation-graph/vue3'
+import type { RGJsonData, RGNode } from 'relation-graph/vue3'
 import { useRoute } from 'vue-router'
+import { useNotification, useMessage, NAvatar } from 'naive-ui'
+import type { NotificationReactive } from 'naive-ui'
 
 const route = useRoute()
 const relationGraph$ = ref<RelationGraph>()
@@ -11,6 +13,64 @@ const options = {
   // defaultLineShape: 4,
   debug: true,
   showDebugPanel: true,
+}
+
+const notification = useNotification()
+const message = useMessage()
+const notificationRef = ref<NotificationReactive | null>(null)
+const nodeMaps:{ [key: string]: object } = {}
+
+const displayNotification = () => {
+  notificationRef.value = notification.create({
+    title: "信息展示",
+    content: () => {
+      return Object.keys(nodeMaps).map((id) => h('div', id))  
+    },
+    meta: '2019-5-27 15:11',
+    avatar: () =>
+      h(NAvatar, {
+        size: 'small',
+        round: true,
+        src: 'https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg'
+      }),
+    onAfterLeave: () => {
+      message.success("closed")
+    }
+  })
+}
+
+const updateNotification = () => {
+  if (notificationRef.value) {
+    notificationRef.value.content = () => {
+      return Object.keys(nodeMaps).map((id) => h('div', id))  
+    }
+  }
+}
+
+const onNodeClick = (node: RGNode) => {
+  const { id } = node
+  const graph = relationGraph$.value && relationGraph$.value.getInstance()
+  if (graph) {
+    if (graph.getNodeById(node.id).opacity !== 0.3) {
+      graph.getNodeById(node.id).opacity = 0.3
+      nodeMaps[id] = node
+    } else {
+      delete nodeMaps[id]
+      graph.getNodeById(node.id).opacity = 1
+    }
+  }
+  if (!notificationRef.value) {
+    displayNotification()
+  } else {
+    updateNotification()
+  }
+  if (!Object.keys(nodeMaps).length) {
+    if (notificationRef.value) {
+      notificationRef.value.destroy()
+      notificationRef.value = null
+    }
+  }
+  return true
 }
 
 onMounted(() => {
@@ -107,7 +167,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <relation-graph ref="relationGraph$" :options="options">
+  <relation-graph :on-node-click="onNodeClick" ref="relationGraph$" :options="options">
     <template #node="{ node }">
       <div style="padding-top:20px;" :title="node['text']">{{ node['text'] }}</div>
     </template>
