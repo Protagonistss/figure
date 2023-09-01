@@ -13,7 +13,8 @@ const options = [
   // { name: '企业图谱', code: '' },
   // { name: '网络拓扑', code: '' },
   { name: '人物关系网络', code: 'relation-graph' },
-  { name: '标签', code: 'tag-view' }
+  { name: '标签', code: 'tag-view' },
+  { name: 'micro-one', code: 'micro-one' },
 ]
 const handleClick = (props: TOption) => {
   const { code } = props
