@@ -5,6 +5,7 @@ import type { RGJsonData, RGNode } from 'relation-graph/vue3'
 import { useRoute } from 'vue-router'
 import { useNotification, useMessage, NAvatar } from 'naive-ui'
 import type { NotificationReactive } from 'naive-ui'
+import DemoContent from '@/components/DemoContent.vue'
 
 const route = useRoute()
 const relationGraph$ = ref<RelationGraph>()
@@ -18,15 +19,15 @@ const options = {
 const notification = useNotification()
 const message = useMessage()
 const notificationRef = ref<NotificationReactive | null>(null)
-const nodeMaps:{ [key: string]: object } = {}
+const nodeMaps:{ [key: string]: RGNode } = {}
 
 const displayNotification = () => {
   notificationRef.value = notification.create({
     title: "信息展示",
     content: () => {
-      return Object.keys(nodeMaps).map((id) => h('div', id))  
+      return h(DemoContent, { dataSource: Object.keys(nodeMaps).map((key: string) => nodeMaps[key])})
     },
-    meta: '2019-5-27 15:11',
+    meta: new Date().toLocaleString(),
     avatar: () =>
       h(NAvatar, {
         size: 'small',
@@ -42,7 +43,7 @@ const displayNotification = () => {
 const updateNotification = () => {
   if (notificationRef.value) {
     notificationRef.value.content = () => {
-      return Object.keys(nodeMaps).map((id) => h('div', id))  
+      return h(DemoContent, { dataSource: Object.keys(nodeMaps).map((key: string) => nodeMaps[key])})
     }
   }
 }
@@ -79,29 +80,29 @@ onMounted(() => {
     const graphJsonData:RGJsonData = {
       rootId: 'N1',
       nodes: [
-        { id: 'N1', text: '党的理论' },
-        { id: 'N2', text: '习近平新时代中国特色社会主义思想概论', width: 110, height: 110 },
-        { id: 'N2-1', text: 'FBKJ2021746', width: 100, height: 100 },
-        { id: 'N2-2', text: '普通课程' },
+        { id: 'N1', text: '党的理论', data: { content: ['习近平新时代中国特色社会主义思想', '习近平新时代中国特色社会主义思想概论', 'FBKJ2021746', '普通课程'] } },
+        { id: 'N2', text: '习近平新时代中国特色社会主义思想概论', data: { content: ['FBKJ2021746', '普通课程', '必修', '基础类']}, width: 110, height: 110 },
+        { id: 'N2-1', text: 'FBKJ2021746',  data: { content: ['普通课程', '必修', '1.5', '1:43:52'] }, width: 100, height: 100 },
+        { id: 'N2-2', text: '普通课程', data: { content: ['必修', '1.5', '1:43:52'] } },
         { id: 'N2-3', text: '必修' },
         { id: 'N2-4', text: '1.5' },
         { id: 'N2-5', text: '1:43:52' },
-        { id: 'N3', text: '现代化产业体系的发展方向与政策重点', width: 110, height: 110 },
+        { id: 'N3', text: '现代化产业体系的发展方向与政策重点', data: { content: ['党的理论', '中央重要会议精神和决策部署', '课程集', '必修'] }, width: 110, height: 110 },
         { id: 'N3-1', text: '课程集' },
         { id: 'N3-2', text: '必修' },
         { id: 'N3-3', text: '2' },
         { id: 'N3-4', text: '1:35:00' },
-        { id: 'N4', text: '向着新目标 奋楫再出发一一2023年两会总体精神解读', width: 120, height: 120 },
+        { id: 'N4', text: '向着新目标 奋楫再出发一一2023年两会总体精神解读', data: { content: ['党的理论', '中央重要会议精神和决策部署', '课程集', '必修'] }, width: 120, height: 120 },
         { id: 'N4-1', text: '课程集' },
         { id: 'N4-2', text: '必修' },
         { id: 'N4-3', text: '2' },
         { id: 'N4-4', text: '1:30:00' },
-        { id: 'N5', text: '2023年宏观政策的着力点：扩大国内需求', width: 110, height: 110 },
+        { id: 'N5', text: '2023年宏观政策的着力点：扩大国内需求', data: { content: ['党的理论', '中央重要会议精神和决策部署', '课程集', '必修'] }, width: 110, height: 110 },
         { id: 'N5-1', text: '课程集' },
         { id: 'N5-2', text: '必修' },
         { id: 'N5-3', text: '2' },
         { id: 'N5-4', text: '1:43:20' },
-        { id: 'N6', text: '实施城市更新行动，促进区域优势互补、各展其长', width: 120, height: 120 },
+        { id: 'N6', text: '实施城市更新行动，促进区域优势互补、各展其长', data: { content: ['党的理论', '中央重要会议精神和决策部署', '课程集', '必修'] }, width: 120, height: 120 },
         { id: 'N6-1', text: '课程集' },
         { id: 'N6-2', text: '必修' },
         { id: 'N6-3', text: '2' },
