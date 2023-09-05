@@ -31,8 +31,8 @@ const router = createRouter({
           component: () => import('@/views/TagsView.vue')
         },
         {
-          path: 'micro-one/:page*',
-          name: 'micro-one',
+          path: 'micro-atlas/:page*',
+          name: 'micro-atlas',
           component: AppOne
         }
       ]

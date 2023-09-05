@@ -14,7 +14,7 @@ const options = [
   // { name: '网络拓扑', code: '' },
   { name: '人物关系网络', code: 'relation-graph' },
   { name: '标签', code: 'tag-view' },
-  { name: 'micro-one', code: 'micro-one' },
+  { name: 'atlas', code: 'micro-atlas' },
 ]
 const handleClick = (props: TOption) => {
   const { code } = props

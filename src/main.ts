@@ -11,12 +11,15 @@ microApp.start({
   plugins: {
     modules: {
       // appName即应用的name值
-      'micro-one': [{
+      'micro-atlas': [{
         loader(code) {
           if (process.env.NODE_ENV === 'development') {
-            code = code.replace(/(from|import)(\s*['"])(\/micro-one\/)/g, all => {
-              console.log('all', all)
-              return all.replace('/micro-one/', 'http://localhost:5174/micro-one/')
+            code = code.replace(/(from|import)(\s*['"])(\/micro-atlas\/)/g, all => {
+              return all.replace('/micro-atlas/', 'http://localhost:5174/micro-atlas/')
+            })
+          } else {
+            code = code.replace(/(from|import)(\s*['"])(\/micro-atlas\/)/g, all => {
+              return all.replace('/micro-atlas/', 'http://182.92.118.193:5174/micro-atlas/')
             })
           }
           return code
