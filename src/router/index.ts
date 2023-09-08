@@ -3,12 +3,13 @@ import HomeView from '../views/HomeView.vue'
 import AppOne from '@/views/micro-apps/AppOne.vue'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory('/base/'),
   routes: [
     {
       path: '/',
       name: 'home',
       component: HomeView,
+      // redirect: '/chat/',
       children: [
         {
           path: 'demo',
@@ -31,8 +32,8 @@ const router = createRouter({
           component: () => import('@/views/TagsView.vue')
         },
         {
-          path: 'micro-atlas/:page*',
-          name: 'micro-atlas',
+          path: '/chat/:page*',
+          name: 'chat',
           component: AppOne
         }
       ]

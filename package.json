@@ -13,7 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@micro-zoe/micro-app": "^0.8.11",
+    "@micro-zoe/micro-app": "^1.0.0-alpha.10",
     "pinia": "^2.1.4",
     "relation-graph": "^2.0.27",
     "vue": "^3.3.4",
