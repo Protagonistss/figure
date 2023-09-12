@@ -9,32 +9,17 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      // redirect: '/chat/',
+      redirect: '/chat/',
       children: [
-        {
-          path: 'demo',
-          name: 'demo',
-          component: () => import('@/views/Demo.vue')
-        },
-        {
-          path: 'bothway-tree',
-          name: 'bothway-tree',
-          component: () => import('@/views/BothwayTree.vue')
-        },
-        {
-          path: 'relation-graph',
-          name: 'relation-graph',
-          component: () => import('@/views/RelationGraph.vue')
-        },
-        {
-          path: 'tag-view',
-          name: 'tag-view',
-          component: () => import('@/views/TagsView.vue')
-        },
         {
           path: '/chat/:page*',
           name: 'chat',
           component: AppOne
+        },
+        {
+          path: '/amis/:page*',
+          name: 'amis',
+          component: () => import('@/views/micro-apps/MicroAmis.vue')
         }
       ]
     }

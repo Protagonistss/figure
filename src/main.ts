@@ -61,6 +61,20 @@ microApp.start({
           }
           return code
         }
+      }],
+      amis: [{
+        loader(code) {
+          if (process.env.NODE_ENV === 'development') {
+            code = code.replace(/(from|import)(\s*['"])(\/base\/amis\/)/g, all => {
+              return all.replace('/base/amis/', 'http://127.0.0.1:8082/base/amis/')
+            })
+          } else {
+            code = code.replace(/(from|import)(\s*['"])(\/base\/amis\/)/g, all => {
+              return all.replace('/base/amis/', 'http://182.92.118.193:8082/base/amis/')
+            })
+          }
+          return code
+        }
       }]
     }
   }
