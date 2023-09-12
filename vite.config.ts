@@ -16,6 +16,9 @@ export default defineConfig({
       resolvers: [NaiveUiResolver()]
     })
   ],
+  build: {
+    outDir: 'base'
+  },
   resolve: {
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
     alias: {
