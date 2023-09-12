@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import AppOne from '@/views/micro-apps/AppOne.vue'
+import MicroAtlas from '@/views/micro-apps/MicroAtlas.vue'
 
 const router = createRouter({
   history: createWebHistory('/base/'),
@@ -14,7 +14,7 @@ const router = createRouter({
         {
           path: '/chat/:page*',
           name: 'chat',
-          component: AppOne
+          component: MicroAtlas
         },
         {
           path: '/amis/:page*',

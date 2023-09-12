@@ -1,11 +1,11 @@
 <script setup lang="ts">
-
+const url = import.meta.env.VITE_CHAT_ADDRESS
 </script>
 <template>
   <div class="app-body__wrapper">
     <micro-app 
       name="chat" 
-      url="http://182.92.118.193:8081/base/chat/"
+      :url="url"
       baseRoute="/chat"
       inline
       disableSandbox>
