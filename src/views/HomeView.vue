@@ -6,15 +6,15 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const options = [
-  { name: '演示', code: 'demo' },
-  { name: '双向树', code: 'bothway-tree' },
+  // { name: '演示', code: 'demo' },
+  // { name: '双向树', code: 'bothway-tree' },
   // { name: '集团图谱', code: '' },
   // { name: '组织架构图谱', code: '' },
   // { name: '企业图谱', code: '' },
   // { name: '网络拓扑', code: '' },
-  { name: '人物关系网络', code: 'relation-graph' },
-  { name: '标签', code: 'tag-view' },
-  { name: 'atlas', code: 'chat' },
+  // { name: '人物关系网络', code: 'relation-graph' },
+  // { name: '标签', code: 'tag-view' },
+  { name: 'atlas', code: 'chat' }
 ]
 const handleClick = (props: TOption) => {
   const { code } = props

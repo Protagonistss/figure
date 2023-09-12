@@ -52,7 +52,7 @@ microApp.start({
         loader(code) {
           if (process.env.NODE_ENV === 'development') {
             code = code.replace(/(from|import)(\s*['"])(\/base\/chat\/)/g, all => {
-              return all.replace('/base/chat/', 'http://182.92.118.193:8081/base/chat/')
+              return all.replace('/base/chat/', 'http://127.0.0.1:5174/base/chat/')
             })
           } else {
             code = code.replace(/(from|import)(\s*['"])(\/base\/chat\/)/g, all => {
